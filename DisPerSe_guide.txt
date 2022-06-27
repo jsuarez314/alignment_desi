@@ -1,0 +1,48 @@
+# How to install Disperse
+
+	Compile gls 1.16 from https://www.linuxfromscratch.org/blfs/view/7.6/general/gsl.html
+	./configure
+	make
+	sudo make install
+
+
+	1) sudo apt -y update
+	on vim /etc/apt/sources.list add: 
+
+	2) deb http://dk.archive.ubuntu.com/ubuntu/ bionic main universe
+
+	3) sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32
+
+	3) sudo apt update && sudo apt install g++-6
+
+	4) sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 50 --slave /usr/bin/g++ g++ /usr/bin/g++-6
+
+	5) sudo update-alternatives --config gcc 
+	and type the corresponding number to choose gcc6.
+
+	6) gcc -v 
+	to check the version of gcc.
+
+	7) sudo ln -s /usr/include/locale.h /usr/include/xlocale.h 
+	to creating a symbolic link.
+
+
+# Run Disperse
+
+	./delaunay_3D ../../data/TCW_pos_real.txt -outDir ../../data/
+	./delaunay_2D ../../data/DR9_radec.txt -outDir ../../data/
+		with pos_real.txt in format px,py,pz. Also can be used ra,dec,z 
+
+	
+	./mse ../../data/TCW_pos_real.txt.NDnet -dumpManifolds JE1a -upSkl -forceLoops -nsig 3.52 -outDir ../../data/  
+
+	
+	./skelconv ../../data/TCW_pos_real.txt.NDnet_s3.52.up.NDskl -smooth 10 -to NDskl_ascii -outDir ../../data/ 
+
+
+	./netconv ../../data/TCW_pos_real.txt.NDnet_s3.52_manifolds_JE2a.NDnet -to NDnet_ascii -outDir ../../data/
+
+	
+
+	
+		
